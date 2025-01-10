@@ -1,7 +1,14 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 
 const initialState = {
-  todos: [{ id: "abc", task: "lectures", isDone: false }],
+  todos: [
+    { id: "abc", task: "lectures", isDone: false },
+    {
+      id: "xyz",
+      task: "Hello",
+      isDone: false,
+    },
+  ],
 };
 
 export const todoSlice = createSlice({
@@ -30,5 +37,5 @@ export const todoSlice = createSlice({
 });
 
 //this below line is for creating object in actions according to their functions pass here
-export const {addTodo, deleteTodo, markAsDone} = todoSlice.actions;
+export const { addTodo, deleteTodo, markAsDone } = todoSlice.actions;
 export default todoSlice.reducer;
