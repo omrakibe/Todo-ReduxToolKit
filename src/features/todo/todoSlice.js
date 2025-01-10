@@ -1,14 +1,7 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 
 const initialState = {
-  todos: [
-    { id: "abc", task: "lectures", isDone: false },
-    {
-      id: "xyz",
-      task: "Hello",
-      isDone: false,
-    },
-  ],
+  todos: [],
 };
 
 export const todoSlice = createSlice({
@@ -17,7 +10,7 @@ export const todoSlice = createSlice({
   reducers: {
     addTodo: (state, action) => {
       const newTodo = {
-        id: 123,
+        id: nanoid(),
         task: action.payload,
         isDone: false,
       };
@@ -27,11 +20,9 @@ export const todoSlice = createSlice({
       state.todos = state.todos.filter((todo) => todo.id !== action.payload);
     },
     markAsDone: (state, action) => {
-      state.todos = state.todos.map((todo) => {
-        if (todo.id === action.payload) {
-          todo.isDone = true;
-        }
-      });
+      state.todos = state.todos.map((todo) =>
+        todo.id === action.payload ? { ...todo, isDone: true } : todo
+      );
     },
   },
 });
